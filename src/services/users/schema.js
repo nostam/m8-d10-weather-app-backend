@@ -17,9 +17,17 @@ const UserSchema = new Schema(
         message: "Username is taken",
       },
     },
-    favourites: [{ city: String, country: String, lat: Number, lon: Number }],
+    password: String,
+    favourites: [
+      {
+        city: { type: String },
+        country: { type: String },
+        lat: { type: Number },
+        lon: { type: Number },
+      },
+    ],
     googleId: String,
-    refreshToken: [{ token: { type: String } }],
+    refreshTokens: [{ token: { type: String } }],
   },
   { timestamps: true }
 );

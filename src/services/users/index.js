@@ -25,6 +25,7 @@ usersRouter.post("/login", async (req, res, next) => {
       .status(201)
       .send("Welcome back");
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
@@ -110,7 +111,7 @@ usersRouter
   .get(authorize, async (req, res, next) => {
     try {
       const data = await fetchWeatherAndBackground(req.user);
-      res.send(data);
+      res.send(req.user);
     } catch (error) {
       next(error);
     }

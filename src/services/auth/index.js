@@ -10,7 +10,7 @@ const authenticate = async (user) => {
     await user.save();
     return { accessToken, refreshToken };
   } catch (error) {
-    throw new Error(500, error);
+    throw new APIError(500, error.message);
   }
 };
 
