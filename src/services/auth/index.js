@@ -19,7 +19,7 @@ const generateJWT = (payload) =>
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: 900 },
+      { expiresIn: 9000 },
       (err, token) => {
         if (err) rej(err);
         res(token);

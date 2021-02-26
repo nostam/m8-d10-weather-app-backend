@@ -27,7 +27,8 @@ async function fetchWeather(city = input) {
     const cw = await axios.get(openWeatherMap.currentWeatherUrl + city);
     //<Next5Days>
     const next5 = await axios.get(openWeatherMap.next5DayUrl + city);
-    const weather = [{ current: cw.data }, { next: next5.data }];
+    // const weather = [{ current: cw.data }, { next: next5.data }];
+    const weather = [{ current: cw.data }];
     return weather;
   } catch (error) {
     console.log(error);
@@ -37,23 +38,29 @@ async function fetchCityBackground(city = input) {
   try {
     //<Upsplash>
     const res = await axios.get(upsplash.url + city);
-    return res.ok ? res.data : new Error();
+    return res.data;
   } catch (error) {
     console.log(error);
   }
 }
 
-const fetchWeatherAndBackground = (user) => {
-  user.favourites.map((entry) => {
-    const weatherData = fetchWeather(entry.city);
-    const bgData = fetchCityBackground(entry.city);
-    // entry["weather"] = weatherData;
-    // entry["images"] = bgData;
-    console.log("en", entry);
-  });
-  console.log("user", user);
-  return user;
-};
+async function fetchWeatherAndBackground(user) {
+  try {
+    const payload = user.favourites.map(async (entry) => {
+      return {
+        city: entry.city,
+        country: entry.coutnry,
+        lat: entry.lat,
+        lon: entry.lon,
+        weather: await fetchWeather(entry.city),
+        images: await fetchCityBackground(entry.city),
+      };
+    });
+    return await Promise.all(payload);
+  } catch (error) {
+    throw new Error(error);
+  }
+}
 
 module.exports = {
   fetchCityBackground,

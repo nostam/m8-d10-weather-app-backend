@@ -111,7 +111,7 @@ usersRouter
   .get(authorize, async (req, res, next) => {
     try {
       const data = await fetchWeatherAndBackground(req.user);
-      res.send(req.user);
+      res.send(data);
     } catch (error) {
       next(error);
     }
