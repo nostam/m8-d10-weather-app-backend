@@ -9,7 +9,7 @@ const UserSchema = new Schema(
       rquired: [true, "Username required"],
       minlength: [3, "Username is too short"],
       validate: {
-        async function(username) {
+        validator: async function (username) {
           const user = await this.constructor.findOne({ username });
           if (user && user.username === this.username) return true;
           return !user ? true : false;
@@ -17,7 +17,7 @@ const UserSchema = new Schema(
         message: "Username is taken",
       },
     },
-    favourites: [{ city: String, country: String, lat: Double, lon: Double }],
+    favourites: [{ city: String, country: String, lat: Number, lon: Number }],
     googleId: String,
     refreshToken: [{ token: { type: String } }],
   },

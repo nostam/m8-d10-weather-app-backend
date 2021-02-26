@@ -1,5 +1,5 @@
 const passport = require("passport");
-const usersRouter = require(express).Router;
+const usersRouter = require("express").Router();
 
 const UserModel = require("./schema");
 const {

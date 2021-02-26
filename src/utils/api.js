@@ -1,6 +1,6 @@
-const owmKey = process.env.REACT_APP_OPENWEATHERMAP_KEY;
-const ipdataKey = process.env.REACT_APP_IPDATA_KEY;
-const upsplashKey = process.env.REACT_APP_UPSPLASH_KEY;
+const owmKey = process.env.OPENWEATHERMAP_KEY;
+const ipdataKey = process.env.IPDATA_KEY;
+const upsplashKey = process.env.UPSPLASH_KEY;
 
 const ipdata = {
   url: `https://api.ipdata.co?api-key=${ipdataKey}`,

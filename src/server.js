@@ -6,7 +6,7 @@ const passport = require("passport");
 const cookieParser = require("cookie-parser");
 // const listEndpoints = require("express-list-endpoints");
 
-const usersRoute = require("./services/user");
+const usersRoute = require("./services/users");
 const { httpErrorHandler } = require("./utils");
 
 const server = express();
@@ -32,7 +32,7 @@ server.use(httpErrorHandler);
 
 mongoose
   .connect(
-    process.env.MONGO_CONNECTION,
+    `${process.env.MONGO_CONNECTION}/weather`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
