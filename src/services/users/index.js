@@ -7,6 +7,7 @@ const {
   accessTokenOptions,
   refreshTokenOptions,
 } = require("../../utils");
+const { fetchWeatherAndBackground } = require("../../utils/api");
 
 const { authorize } = require("../auth/middlewares");
 const { authenticate } = require("../auth");
@@ -108,7 +109,8 @@ usersRouter
   .route("/me")
   .get(authorize, async (req, res, next) => {
     try {
-      res.send(req.user);
+      const data = await fetchWeatherAndBackground(req.user);
+      res.send(data);
     } catch (error) {
       next(error);
     }

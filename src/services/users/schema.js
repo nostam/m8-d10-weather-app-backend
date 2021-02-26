@@ -17,7 +17,7 @@ const UserSchema = new Schema(
         message: "Username is taken",
       },
     },
-    favourites: [{ city: String, country: String }],
+    favourites: [{ city: String, country: String, lat: Double, lon: Double }],
     googleId: String,
     refreshToken: [{ token: { type: String } }],
   },
